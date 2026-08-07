@@ -1,26 +1,190 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand tokens mirrored from the PharmaSys product app (pharmacy_management_system_client)
+     so the marketing site and the real product feel like one brand. */
+  --background: oklch(99.1% 0.004 247);
+  --foreground: oklch(23% 0.02 265);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(23% 0.02 265);
+  --muted: oklch(96.5% 0.008 260);
+  --muted-foreground: oklch(50% 0.02 260);
+  --border: oklch(90% 0.012 260);
+
+  --primary: oklch(58% 0.19 258);
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: oklch(70% 0.15 165);
+  --secondary-foreground: oklch(100% 0 0);
+  --accent: oklch(74% 0.15 55);
+  --accent-foreground: oklch(20% 0.02 60);
+
+  --success: oklch(58% 0.13 155);
+  --warning: oklch(72% 0.16 65);
+
+  --radius: 0.9rem;
+
+  /* Section-level gradient stops reused throughout the page */
+  --glow-primary: oklch(58% 0.19 258 / 0.35);
+  --glow-secondary: oklch(70% 0.15 165 / 0.3);
+  --glow-accent: oklch(74% 0.15 55 / 0.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(19% 0.018 260);
+    --foreground: oklch(95% 0.006 260);
+    --card: oklch(22% 0.02 260);
+    --card-foreground: oklch(95% 0.006 260);
+    --muted: oklch(26% 0.02 260);
+    --muted-foreground: oklch(70% 0.015 260);
+    --border: oklch(32% 0.02 260);
+
+    --primary: oklch(72% 0.15 258);
+    --primary-foreground: oklch(15% 0.02 260);
+    --secondary: oklch(72% 0.13 165);
+    --accent: oklch(75% 0.14 55);
+    --accent-foreground: oklch(18% 0.02 60);
+
+    --glow-primary: oklch(72% 0.15 258 / 0.4);
+    --glow-secondary: oklch(72% 0.13 165 / 0.32);
+    --glow-accent: oklch(75% 0.14 55 / 0.3);
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 14px);
+  --radius-3xl: calc(var(--radius) + 22px);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+  --animate-grid-pan: grid-pan 24s linear infinite;
+  --animate-marquee: marquee 32s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+    50% { transform: translateY(-16px) translateX(6px) rotate(3deg); }
+  }
+  @keyframes grid-pan {
+    0% { background-position: 0 0; }
+    100% { background-position: 64px 64px; }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  border-color: var(--border);
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ---- Reusable visual utilities ---- */
+
+.glass {
+  background: color-mix(in oklch, var(--card) 85%, transparent);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid color-mix(in oklch, var(--border) 80%, transparent);
+}
+
+.gradient-text {
+  background: linear-gradient(100deg, var(--primary), var(--secondary) 55%, var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.gradient-mesh {
+  background-image:
+    radial-gradient(40% 50% at 15% 10%, var(--glow-primary), transparent 70%),
+    radial-gradient(35% 45% at 85% 20%, var(--glow-secondary), transparent 70%),
+    radial-gradient(45% 55% at 50% 100%, var(--glow-accent), transparent 70%);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(color-mix(in oklch, var(--foreground) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklch, var(--foreground) 6%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.card-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--primary), transparent 40%, var(--secondary));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
