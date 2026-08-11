@@ -8,8 +8,8 @@ import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { APP_ROUTES } from "@/lib/config";
 
 const CONTACT = {
-  email: "hello@pharmasys.co.tz",
-  phone: "+255 700 000 000",
+  email: "mwangobora37@gmail.com",
+  phone: "+255 761 862 523",
 };
 
 export function CTASection() {
@@ -41,7 +41,7 @@ export function CTASection() {
               Request Access
             </Button>
             <Button href={APP_ROUTES.login} variant="outline" size="lg" external icon={<LogIn className="h-4 w-4" />}>
-              Login
+              Test the Pharmacy System Freely
             </Button>
           </div>
         </RevealOnScroll>
@@ -65,7 +65,7 @@ export function CTASection() {
           </div>
           <p className="mt-4 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
             <MessageCircle className="h-3.5 w-3.5" />
-            Already have an account? Ask your administrator, or log in above.
+            Already have an account? Test the pharmacy system freely above, or request onboarding.
           </p>
         </RevealOnScroll>
       </div>

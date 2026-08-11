@@ -1,6 +1,12 @@
 import Link from "next/link";
-import { Mail, Phone, Pill } from "lucide-react";
+import { Mail, MapPin, Phone, Pill } from "lucide-react";
 import { APP_ROUTES, SITE } from "@/lib/config";
+
+const CONTACT = {
+  email: "mwangobora37@gmail.com",
+  phone: "+255 761 862 523",
+  address: "Sinza, Dar es Salaam, Tanzania",
+};
 
 const COLUMNS = [
   {
@@ -15,7 +21,7 @@ const COLUMNS = [
   {
     title: "Account",
     links: [
-      { label: "Login", href: APP_ROUTES.login, external: true },
+      { label: "Test the Pharmacy System Freely", href: APP_ROUTES.login, external: true },
       { label: "Request Access", href: "#request-access" },
       { label: "Contact", href: "#request-access" },
     ],
@@ -38,12 +44,15 @@ export function Footer() {
               {SITE.description}
             </p>
             <div className="mt-5 space-y-2 text-sm text-muted-foreground">
-              <a href="mailto:hello@pharmasys.co.tz" className="flex items-center gap-2 hover:text-foreground">
-                <Mail className="h-3.5 w-3.5" /> hello@pharmasys.co.tz
+              <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2 hover:text-foreground">
+                <Mail className="h-3.5 w-3.5" /> {CONTACT.email}
               </a>
-              <a href="tel:+255700000000" className="flex items-center gap-2 hover:text-foreground">
-                <Phone className="h-3.5 w-3.5" /> +255 700 000 000
+              <a href={`tel:${CONTACT.phone.replace(/\s+/g, "")}`} className="flex items-center gap-2 hover:text-foreground">
+                <Phone className="h-3.5 w-3.5" /> {CONTACT.phone}
               </a>
+              <p className="flex items-center gap-2">
+                <MapPin className="h-3.5 w-3.5" /> {CONTACT.address}
+              </p>
             </div>
           </div>
 

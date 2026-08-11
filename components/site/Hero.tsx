@@ -33,19 +33,19 @@ export function Hero() {
 
           <RevealOnScroll delay={0.7}>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-              PharmaSys keeps inventory, procurement, sales, and staff access in sync in real time —
-              so stock counts are always accurate, restocking is one click away, and every sale is
-              recorded automatically.
+              PharmaSys keeps inventory, procurement, sales, and staff access in sync in real time.
+              Open the live demo instantly to test stock control, purchasing, billing, and pharmacy
+              reporting in one connected system.
             </p>
           </RevealOnScroll>
 
           <RevealOnScroll delay={0.85}>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Button href="#request-access" size="lg" icon={<ArrowRight className="h-4 w-4" />}>
-                Get Started
+                Request Access
               </Button>
               <Button href={APP_ROUTES.login} variant="outline" size="lg" external icon={<PlayCircle className="h-4 w-4" />}>
-                Login to PharmaSys
+                Test the Pharmacy System Freely
               </Button>
             </div>
           </RevealOnScroll>

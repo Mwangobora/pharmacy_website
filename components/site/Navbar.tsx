@@ -66,11 +66,11 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <Button href={APP_ROUTES.login} variant="ghost" size="md" external>
-            Login
+          <Button className="bg-blue-600 text-cyan-50 hover:bg-blue-700" href={APP_ROUTES.login} variant="ghost" size="md" external>
+            Test the Pharmacy System Freely
           </Button>
           <Button href="#request-access" variant="primary" size="md">
-            Get Started
+            Request Access
           </Button>
         </div>
 
@@ -108,10 +108,16 @@ export function Navbar() {
             </nav>
             <div className="mt-3 flex flex-col gap-2 border-t border-border pt-3">
               <Button href={APP_ROUTES.login} variant="outline" size="md" external className="w-full">
-                Login
+                Test the Pharmacy System Freely
               </Button>
-              <Button href="#request-access" variant="primary" size="md" className="w-full" onClick={() => setOpen(false)}>
-                Get Started
+              <Button
+                href="#request-access"
+                variant="primary"
+                size="md"
+                className="w-full"
+                onClick={() => setOpen(false)}
+              >
+                Request Access
               </Button>
             </div>
           </motion.div>
